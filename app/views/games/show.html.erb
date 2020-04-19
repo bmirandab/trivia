@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game.name %>
+</p>
+
+
+<div> Members: 
+<ul>
+<% @members.each do |m| %> 
+  <li> <%= m %></li>
+<% end %> 
+</ul>
+</div>
+<%= link_to("Join", game_user_games_path(@game, user_game: { game_id: @game.id, user_id: @user_id } ), method: :post) unless @has_joined %> 
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
