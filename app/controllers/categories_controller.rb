@@ -14,7 +14,9 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+   
+    @category = Category.new(category_params)
+    @game = Game.find(category_params[:game_id]).name
   end
 
   # GET /categories/1/edit
@@ -69,6 +71,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:users_id, :games_id, :name)
+      params.require(:category).permit(:user_id, :game_id, :name)
     end
 end

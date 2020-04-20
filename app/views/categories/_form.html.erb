@@ -11,18 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :users_id %>
-    <%= form.text_field :users_id %>
+  <div class="field" style= "display:none;">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field" style= "display:none;">
+    <%= form.label :game_id %>
+    <%= form.text_field :game_id %>
   </div>
 
   <div class="field">
-    <%= form.label :games_id %>
-    <%= form.text_field :games_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
+    <span> Category Name</span>
+    <%= form.label :name , style: "display:none;" %>
     <%= form.text_field :name %>
   </div>
 

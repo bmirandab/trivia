@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  root to: "games#index"
 
   resources :categories
   devise_for :users

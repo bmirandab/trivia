@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   # GET /games
@@ -11,6 +12,7 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @members = members
+    @has_created_category = Category.where(user_id: current_user.id, game_id: params[:id]).present?
     @has_joined = UserGame.find_by(user_id: current_user.id, game_id: params[:id]).present?
     @user_id = current_user.id
   end
@@ -28,6 +30,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
+
 
     respond_to do |format|
       if @game.save

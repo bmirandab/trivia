@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+    @question = Question.new(question_params)
   end
 
   # GET /questions/1/edit
@@ -69,6 +69,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:categories_id, :name, :right_answer)
+      params.require(:question).permit(:category_id, :name, :right_answer)
     end
 end
