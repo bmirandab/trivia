@@ -2,7 +2,7 @@
 
 <p>
   <strong>Categories:</strong>
-  <%= @question.categories_id %>
+  <%= @question.category.name %>
 </p>
 
 <p>
@@ -15,5 +15,5 @@
   <%= @question.right_answer %>
 </p>
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+<%= link_to 'Edit', edit_game_category_question_path(@question) %> |
+<%= link_to 'Back', game_category_path(@question.category) %>

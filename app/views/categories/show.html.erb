@@ -15,5 +15,15 @@
   <%= @category.name %>
 </p>
 
+
+<ul>
+<% @questions.each do |q| %> 
+  <li> <%= link_to q.name, game_category_question_path(q, category_id: q.category.id, game_id: q.category.game.id) %></li>
+<% end %> 
+</ul>
+
+
+<%= link_to("Add question to category", new_game_category_question_path(@category.id, { question: { category_id: @category.id}, game_id: @game.id   } )) %> 
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

@@ -12,6 +12,7 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @members = members
+    @categories = Category.where(game_id: params[:id])
     @has_created_category = Category.where(user_id: current_user.id, game_id: params[:id]).present?
     @has_joined = UserGame.find_by(user_id: current_user.id, game_id: params[:id]).present?
     @user_id = current_user.id

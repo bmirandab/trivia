@@ -15,6 +15,8 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new(question_params)
+    @game = Game.find(params[:game_id])
+    @category = Category.find(question_params[:category_id])
   end
 
   # GET /questions/1/edit
@@ -28,7 +30,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to category_path(@question.category), notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -69,6 +71,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:category_id, :name, :right_answer)
+      params.require(:question).permit(:category_id, :name, :right_answer, :game_id)
     end
 end

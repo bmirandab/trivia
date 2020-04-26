@@ -1,17 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
+  <strong>Game Name:</strong>
   <%= @game.name %>
-</p>
+</h1>
 
 
 <% if @has_created_category %> 
-<p> Category created! Add questions!</p>
+<p> You've created your category. Add questions!</p>
+<div> Other player's categories: 
+<ul>
+<% @categories.each do |c| %> 
+  <li> <%= link_to c.name, category_path(c) %></li>
+<% end %> 
+</ul>
 
 <% else %> 
 <%= link_to("Create your Category", new_game_category_path(@game, category: { game_id: @game.id, user_id: @user_id } )) %> 
 <% end %> 
+
+
+
 
 
 <div> Members: 
@@ -20,6 +29,9 @@
   <li> <%= m %></li>
 <% end %> 
 </ul>
+
+
+
 </div>
 <%= link_to("Join", game_user_games_path(@game, user_game: { game_id: @game.id, user_id: @user_id } ), method: :post) unless @has_joined %> 
 
